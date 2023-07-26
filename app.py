@@ -5,7 +5,7 @@ import json
 import os
 
 app = Flask(__name__)
-CORS(app)
+CORS(app, resources={r"/api/*": {"origins": "http://localhost:3000"}})
 openai.api_key  = os.environ.get('API_KEY')
 
 
