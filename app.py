@@ -5,7 +5,7 @@ import json
 import os
 
 app = Flask(__name__)
-CORS(app, resources={r"/api/*": {"origins": "*"}})
+CORS(app)
 openai.api_key  = os.environ.get('API_KEY')
 
 
@@ -20,13 +20,11 @@ def get_completion(prompt, model="gpt-3.5-turbo"): # Andrew mentioned that the p
 
 
 @app.route("/", methods=['GET'])
-@cross_origin
 def index():
     return jsonify({"message": "Hello World"})
 
 
 @app.route("/api/get-themes",methods=['POST'])
-@cross_origin()
 def get_themes():
     if request.method == "POST":
         if request.json:
